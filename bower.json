@@ -1,0 +1,18 @@
+{
+  "name": "simple-blog-nodejs"
+, "version": "0.0.1"
+, "authors": [
+    "Nick Herman <gerkola@gmail.com>"
+  ]
+, "description": "Node.js + MongoDB minimalistic blog app"
+, "main": "app.js"
+, "keywords": [
+    "blog"
+  ]
+, "license": "BSD-2-Clause"
+, "dependencies": {
+    "sir-trevor-js": "~0.3.0"
+  , "bootstrap":"=2.3.2"
+  }
+, "private": true
+}

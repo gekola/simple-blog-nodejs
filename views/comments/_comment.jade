@@ -1,0 +1,13 @@
+mixin render_comment(comment, path)
+  .comment
+    .comment-body= comment['comment']
+    .comment-actions
+      a.add-comment(href='#', data-path=path) Add comment
+      span.created-at= article['created_at']
+      span.comment-author= 'by ' + comment['author']
+    if comment['comments']
+      - each cmnt, i in comment['comments']
+        - pth = path + ',' + i
+        mixin render_comment(cmnt, pth)
+
+mixin render_comment(comment, path)

@@ -1,0 +1,14 @@
+case typeof(blocks)
+  when 'string'
+    != blocks
+  when 'object'
+    each full_blk in blocks['data']
+      - blk = full_blk['data']
+      case full_blk['type']
+        when 'image'
+          include _image
+        when 'quote'
+          include _quote
+        when 'text'
+          include _text
+//= typeof(blocks)

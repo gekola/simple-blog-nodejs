@@ -1,0 +1,24 @@
+extends ../layout/layout
+
+block content
+  form(action='/register', method="post")
+    fieldset
+      div
+        label First Name:
+        input(type='text', name='first_name' value=user['first_name'])
+      div
+        label Last Name:
+        input(type='text', name='last_name', value=user['last_name'])
+      div
+        label Email:
+        input(type='email', name='email', value=user['email'])
+      div
+        label Username:
+        input(type='text', name='username', value=user.username)
+      div
+        label Password:
+        input(type='password', name='password')
+      div
+        label Retype Password:
+        input(type='password', name='password_confirmation')
+      button.btn Register

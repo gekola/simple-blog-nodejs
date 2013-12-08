@@ -1,0 +1,23 @@
+{
+  "name": "simple-blog-nodejs"
+, "version": "0.0.1"
+, "description": "Node.js + MongoDB minimalistic blog app"
+, "private": true
+, "scripts": {
+    "start": "node app.js"
+  }
+, "dependencies": {
+    "express": "~3.4"
+  , "connect-slashes": "~1.0"
+  , "jade": "~0.35"
+  , "less-middleware": "~0.1.14"
+  , "mongoose": "~3.8"
+  , "passport": "~0.1.17"
+  , "passport-local": "~0.1.6"
+  , "connect-flash": "~0.1.1"
+  , "express-validator": "~1.0"
+  , "bower": "~1.2.8"
+  , "bcrypt": "~0.7.7"}
+, "author": "Nick Herman <gerkola@gmail.com>"
+, "license": "BSD-2-Clause"
+}

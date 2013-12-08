@@ -1,0 +1,20 @@
+extends ../layout/layout
+
+block content
+  .container
+    .row
+      .offset4.span4
+        p
+          | Welcome! 
+          a(href='/register') Create an account
+          |  or login below:
+
+        form(action='/login', method='post')
+          div
+            label Username:
+            input(type='text', name='username')
+          div
+            label Password:
+            input(type='password', name='password')
+          div
+          button.btn Log In

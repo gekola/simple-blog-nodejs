@@ -1,0 +1,19 @@
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/ext_assets/sir-trevor-js/sir-trevor.css')
+    link(rel='stylesheet', href='/ext_assets/sir-trevor-js/sir-trevor-icons.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/ext_assets/jquery/jquery.min.js')
+    script(src='/ext_assets/underscore/underscore-min.js')
+    script(src='/ext_assets/Eventable/eventable.js')
+    script(src='/ext_assets/bootstrap/bootstrap/js/bootstrap.min.js')
+    script(src='/ext_assets/sir-trevor-js/sir-trevor.min.js')
+    script(src='/javascripts/script.js')
+  body
+    include _navigation
+    .container-fluid
+      .row-fluid
+        include _alert_messages
+        block content

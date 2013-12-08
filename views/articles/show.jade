@@ -1,0 +1,27 @@
+extends ../layout/layout
+
+block content
+  .article
+    h3.title= article['title']
+    .body
+      - blocks = article['body']
+      include ../sir-trevor-blocks/_blocks
+    .status-bar
+      span.created-at= article['created_at']
+      span.author= 'by ' + article['author']
+      if !article['approved'] && user && article['author'] == user['username']
+        a(href='edit'): span.edit edit
+      if user && user['role'] == 'admin'
+        if !article['approved']
+          a(href='approve?to=1'): span.approve approve
+        else
+          a(href='approve?to=0'): span.disapprove disapprove
+      if article['tags']
+        span.tags
+          | tags: 
+          - each k in article['tags']
+            span: a(href='/posts?k='+k)= k
+    include ../comments/_new
+    - each comment, i in article.comments
+      - path = i
+      include ../comments/_comment

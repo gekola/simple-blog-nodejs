@@ -1,0 +1,22 @@
+extends ../layout/layout
+
+block content
+  h1 Account Page
+  form(action='/account', method='post')
+    fieldset
+      label First Name: 
+      input(type='text', name='first_name', value=user['first_name'])
+      label Last Name: 
+      input(type='text', name='last_name', value=user['last_name'])
+      label Email:</label>
+      input(type='email', name='email' value=user['email'])
+      label Username: 
+      input(type='text', name='username', value=user['username'])
+      label New Password: 
+      input(type='password', name='password')
+      label Retype New Password: 
+      input(type='password', name='password_confirmation')
+      label Current Password: 
+      input(type='password', name='current_password')
+      br
+      button.btn Save

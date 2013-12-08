@@ -1,0 +1,21 @@
+extends ../layout/layout
+
+block content
+  h1= title
+  form.span6(method='post')
+    div
+      div
+        label Title :
+        input.span8(type='text', name='title', value=article['title'])
+      div
+        label Body :
+        textarea.js-st-edit(name='body', rows=20, value=article['body'])
+      div
+        label Preview :
+        textarea.span12(name='preview', rows=5)= article['preview']
+      div
+        select(name='tags', multiple='multiple')
+          - each k in keywords
+            option(value=k, selected=(article['tags'].indexOf(k) != -1))= k
+      div#editArticleSubmit
+        input.btn(type='submit', value='Send')

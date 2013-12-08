@@ -1,0 +1,15 @@
+extends ../layout/layout
+
+block content
+  .span3
+    form(action='/login', method='post')
+      input(type='hidden', name='redirect', value=redirect)
+      div
+        label Username:
+        input(type='text', name='username')
+      div
+        label Password:
+        input(type='password', name='password')
+      div
+        button.btn Log In
+    //- a(href='/reset_password') Forgot your password?

@@ -1,0 +1,10 @@
+figure.content-block.image-block
+  if(blk['file'] && blk['file']['large'])
+    - image = blk['file']['large']
+    - options = {alt: blk['description']}
+    if image['width']
+      - options['width'] = image['width']
+    if image['height']
+      - options['height'] = image['height']
+    if image['url']
+      img.sir-trevor-image.large(src=image['url'], options)

@@ -1,0 +1,18 @@
+.navbar.navbar-static-top
+  .navbar-inner
+    a.brand(href='/') My Blog
+    ul.nav
+      //- li: a(href='/') Home
+
+      if (userIsAuthenticated)
+        li.dropdown
+          a.dropdown-toggle(data-toggle='dropdown', href='#') Posts
+          ul.dropdown-menu(role='menu')
+            li: a(href='/posts/') List
+            li: a(href='/posts/new') New
+        li: a(href='/account') Account
+        li: a(href='/logout') Logout
+      else
+        li: a(href='/posts/') Posts
+        li: a(href='/login') Login
+        li: a(href='/register') Register

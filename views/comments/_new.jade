@@ -1,0 +1,8 @@
+.add-comment-blk
+  form(method='post',
+       action='/posts/' + article['_id'].toHexString() + '/add_comment')
+    div
+      span Comment :
+      textarea(name='comment', id='addCommentComment')
+      input(type='hidden', name='comment-path', value='')
+      input.btn(type='submit', value='Send')
