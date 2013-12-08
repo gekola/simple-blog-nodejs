@@ -1,0 +1,8 @@
+extends ../layout/layout
+
+block content
+  h3 The most popular tags
+  ul.span5
+    - each tag in tags
+      li: a(href='/posts?k=' + tag['_id'])
+          = tag['_id'] + ' (' + tag['count'] + ')'

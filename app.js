@@ -25,6 +25,8 @@ var express = require('express')
 //  Controllers
 ,   HomeController = require('./controllers/home')
 ,   ArticlesController = require('./controllers/articles')
+,   AttachmentsController = require('./controllers/attachments')
+,   TagsController = require('./controllers/tags')
 ,   UsersController = require('./controllers/users')
 
 ,   http = require('http')
@@ -52,7 +54,8 @@ app.configure(function() {
   app.use(slashes());
 
   app.use(express.urlencoded());
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({keepExtensions: true, uploadDir: "public/uploads"}));
+  //app.use(express.multipart());
   app.use(expressValidator());
   app.use(express.methodOverride());
   app.use(express.cookieParser('secret'));
@@ -110,8 +113,7 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated())
     return next();
   req.flash('error', 'Please sign in to continue.');
-  var redirect = req.url;
-  return res.redirect('/login?redirect='+redirect);
+  return res.redirect('/login?redirect=' + req.url);
 };
 
 function redirectAuthenticated(req, res, next) {
@@ -164,6 +166,9 @@ app.post('/posts/:id/edit',   ensureAuthenticated,
                               ArticlesController.update);
 app.get('/posts/:id/approve', ensureAuthenticated,
                               ArticlesController.approve);
+app.get('/tags',              TagsController.index);
+app.post('/attachments',      ensureAuthenticated,
+                              AttachmentsController.create);
 app.all('*',                  HomeController.notFound);
 /*
 app.get('/', function(req, res) {

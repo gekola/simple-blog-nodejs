@@ -3,3 +3,4 @@ public/ext_assets
 npm-debug.log
 public/stylesheets/*.*
 !public/stylesheets/*.less
+public/uploads

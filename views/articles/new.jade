@@ -9,7 +9,7 @@ block content
         input.span8(type='text', name='title', value=article['title'])
       div
         label Body :
-        textarea.js-st-edit(name='body', rows=20, value=article['body'])
+        textarea.js-st-edit(name='body', rows=20)= JSON.stringify(article['body'])
       div
         label Preview :
         textarea.span12(name='preview', rows=5)= article['preview']

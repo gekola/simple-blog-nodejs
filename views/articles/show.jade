@@ -9,7 +9,7 @@ block content
     .status-bar
       span.created-at= article['created_at']
       span.author= 'by ' + article['author']
-      if !article['approved'] && user && article['author'] == user['username']
+      if (!article['approved'] && user && article['author'] == user['username']) || (user && user['role'] == 'admin')
         a(href='edit'): span.edit edit
       if user && user['role'] == 'admin'
         if !article['approved']
