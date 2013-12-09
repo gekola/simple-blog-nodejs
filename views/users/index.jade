@@ -1,0 +1,7 @@
+extends ../layout/layout
+
+block content
+  h3 Users
+  ul.span4
+    - each user in users
+       li: a(href='/users/'+user['username'])= user['full_name']

@@ -26,6 +26,7 @@ var express = require('express')
 ,   HomeController = require('./controllers/home')
 ,   ArticlesController = require('./controllers/articles')
 ,   AttachmentsController = require('./controllers/attachments')
+,   CategoriesController = require('./controllers/categories')
 ,   TagsController = require('./controllers/tags')
 ,   UsersController = require('./controllers/users')
 
@@ -72,6 +73,8 @@ app.configure(function() {
     next();
   });
   app.use(app.router);
+
+  //mongoose.set('debug', true);
 });
 
 
@@ -149,8 +152,8 @@ app.post('/account',          ensureAuthenticated,
 //app.get('/dashboard',         ensureAuthenticated,
 //                              UsersController.dashboard);
 app.get('/logout',            UsersController.logout);
-app.get('/users',             ensureAuthenticated,
-                              UsersController.index);
+app.get('/users',             UsersController.index);
+app.get('/users/:id',         UsersController.show);
 app.get('/posts/',            ArticlesController.index);
 app.get('/posts/new',         ensureAuthenticated,
                               ArticlesController.new);
@@ -167,6 +170,8 @@ app.post('/posts/:id/edit',   ensureAuthenticated,
 app.get('/posts/:id/approve', ensureAuthenticated,
                               ArticlesController.approve);
 app.get('/tags',              TagsController.index);
+app.get('/cats',              CategoriesController.index);
+app.get('/cats/:id',          CategoriesController.show);
 app.post('/attachments',      ensureAuthenticated,
                               AttachmentsController.create);
 app.all('*',                  HomeController.notFound);

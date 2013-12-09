@@ -1,0 +1,18 @@
+extends ../layout/layout
+
+block content
+  h3=usera['full_name'] + ' (' + usera['username'] +')'
+  - each user_status in user_statuses
+    .box
+      = user_status['status']
+      = ' (at ' + user_status['created_at'].toUTCString() + ')'
+  //if user && usera['_id'] == user['_id']
+    form(action='/add_status')
+  - each article in articles
+    .article
+      h4.title
+        a(href='/posts/'+article._id)!= article.title
+      div.preview= article['preview']
+      div.created_at
+        | Created at: 
+        = article['created_at'].toUTCString()

@@ -1,18 +1,13 @@
 var mongoose = require('mongoose')
+,   Article = mongoose.model('Article')
 ,   User = mongoose.model('User')
+,   UserStatus = mongoose.model('UserStatus')
 ,   passport = require('passport');
 
 // Get login page
 module.exports.login = function(req, res){
   res.render('users/login', {redirect: req.param('redirect') || "" });
 };
-
-/*
-// Get dashboard
-module.exports.dashboard = function(req, res){
-  res.render('users/dashboard');
-};
-*/
 
 // Authenticate user
 module.exports.authenticate = function(req, res, next) {
@@ -49,12 +44,44 @@ module.exports.account = function(req,res){
 };
 
 module.exports.index = function(req, res, next){
-  User.find(function(err,users){
+  User.find(function(err, users){
     if(err)
-      return next(err);
-    res.render('users/index',{
-      users:users
-    });
+      next(err);
+    else
+      res.render('users/index', {users: users});
+  });
+};
+
+module.exports.show = function(req, res, next){
+  var username = req.params.id
+  ,   q = {username: username};
+  User.findOne(q, function(err, user){
+    if (err)
+      next(err);
+    else
+      Article
+        .find({author: username})
+        .sort({created_at: -1})
+        .exec(function(err, articles) {
+          if (err)
+            next(err);
+          else
+            UserStatus
+              .find({user: user['_id']})
+              .sort({created_at: -1})
+              .limit(3)
+              .exec(function(err, user_statuses) {
+                console.dir(user_statuses);
+                if (err)
+                  next(err);
+                else
+                  res.render('users/show', {
+                    usera: user,
+                    articles: articles,
+                    user_statuses: user_statuses
+                  });
+            });
+      });
   });
 };
 

@@ -12,7 +12,7 @@ var ArticleSchema = new Schema({
   clear_url: {type: String},
   preview: {type: String, required: true},
   approved: {type: Boolean, default: false},
-  comments: {type: [Comment], default: []},
+  comments: {type: [Comment.schema], default: []},
   tags: {type: [String], ref: Keyword},
   clear_url: {type: String, index: {unique: true}},
   seo_options: {type: Object}

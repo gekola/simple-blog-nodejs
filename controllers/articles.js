@@ -27,7 +27,7 @@ module.exports.index = function(req, res) {
     q = {$and: q};
   }
 
-  Article.find(q, function(err, docs) {
+  Article.find(q).sort({created_at: -1}).exec(function(err, docs) {
     if (err)
       throw err;
     res.render('articles/index.jade', {title: 'Blog', articles: docs});
@@ -95,7 +95,7 @@ module.exports.show = function(req, res) {
   });
 };
 
-module.exports.approve = function(req, res) {
+module.exports.approve = function(req, res, next) {
   Article.findById(req.params.id, function(err, article) {
     switch(req.param('to')) {
     case '0':
@@ -106,7 +106,10 @@ module.exports.approve = function(req, res) {
       break;
     }
     article.save(function(err, doc){
-      res.redirect('/posts/' + req.params.id);
+      if (err)
+        next(err);
+      else
+        res.redirect('/posts/' + req.params.id);
     });
   });
 };

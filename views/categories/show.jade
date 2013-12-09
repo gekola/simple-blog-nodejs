@@ -1,0 +1,18 @@
+extends ../layout/layout
+
+block content
+  h2= category['name']
+  .span5
+    = category['description']
+
+  .clearfix
+  #articles
+    h3 Articles on topic:
+    - each article in articles
+      .article
+        h4.title
+          a(href='/posts/'+article._id)!= article.title
+        div.preview= article['preview']
+        div.created_at
+          | Created at: 
+          = article['created_at'].toUTCString()

@@ -22,6 +22,6 @@ block content
           - each k in article['tags']
             span: a(href='/posts?k='+k)= k
     include ../comments/_new
-    - each comment, i in article.comments
+    - each comment, i in article['comments']
       - path = i
       include ../comments/_comment

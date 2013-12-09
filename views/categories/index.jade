@@ -1,0 +1,7 @@
+extends ../layout/layout
+
+block content
+  h3= Categories
+  ul
+    - each cat in categories
+      li: a(href='/cats/' + cat['clear_url'])= cat['name']
