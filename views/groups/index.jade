@@ -1,0 +1,7 @@
+extends ../layout/layout
+
+block content
+  h3 Groups
+  ul
+    - each group in groups
+      li: a(href='/groups/'+group['clear_url'])= group['title']

@@ -27,6 +27,7 @@ var express = require('express')
 ,   ArticlesController = require('./controllers/articles')
 ,   AttachmentsController = require('./controllers/attachments')
 ,   CategoriesController = require('./controllers/categories')
+,   GroupsController = require('./controllers/groups')
 ,   TagsController = require('./controllers/tags')
 ,   UsersController = require('./controllers/users')
 
@@ -172,6 +173,8 @@ app.get('/posts/:id/approve', ensureAuthenticated,
 app.get('/tags',              TagsController.index);
 app.get('/cats',              CategoriesController.index);
 app.get('/cats/:id',          CategoriesController.show);
+app.get('/groups',            GroupsController.index);
+app.get('/groups/:id',        GroupsController.show);
 app.post('/attachments',      ensureAuthenticated,
                               AttachmentsController.create);
 app.all('*',                  HomeController.notFound);

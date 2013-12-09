@@ -1,0 +1,14 @@
+extends ../layout/layout
+
+block content
+  h3= group['title']
+  .desc.span6
+    = group['description']
+  ul.users.span5.right
+    | Users list:
+    - each user in users
+      li: a(href='/user/' + user['username'])= user['full_name']
+  .clearfix
+  - each comment in comments
+    - comment = comment.comment
+    include ../comments/_comment
